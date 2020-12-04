@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-
-class User extends Authenticatable implements JWTSubject
+class Subadmin extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $table = 'users';
+    protected $table = 'subadmins';
 
     protected $fillable = [
         'name',
@@ -24,9 +25,9 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    public function inov()
+    public function blog()
     {
-        return $this->hasMany(Initiative::class);
+        return $this->hasMany(Blog::class);
     }
 
     protected $hidden = [
